@@ -7,7 +7,7 @@ jobs:
       - name: check repo
         uses: actions/checkout@v2
       - name: Login
-        run: login --username khiba-k --password ${{secrets.CR_PAT }} ghcr.io
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u khiba-k --password-stdin
       - name: build image
         run: docker build . --tag ghcr.io/khiba-k/test_workflow:latest
       - name: Push image
