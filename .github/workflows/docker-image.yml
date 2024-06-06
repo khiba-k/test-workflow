@@ -6,9 +6,8 @@ jobs:
     steps:
       #check the repo
       - uses: actions/checkout@v2
-      #build the docker image
-      - run: docker build -t hello-alpine ../..
       #Github Container registry Login
       - run: login --username khiba-k --password ${{secrets.CR_PAT }} ghcr.io
+      - run: docker build . --tag ghcr.io/khiba-k/test_workflow:latest
       #Push image to registry
       - run: docker push ghcr.io/khiba-k/test_workflow:latest
