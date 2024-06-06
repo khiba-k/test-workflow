@@ -11,4 +11,4 @@ jobs:
       #Github Container registry Login
       - run: login --username khiba-k --password ${{secrets.CR_PAT }} ghcr.io
       #Push image to registry
-      - run: docker push ghcr.io/${{ github.repository }}/test_workflow:latest
+      - run: docker push ghcr.io/khiba-k/test_workflow:latest
