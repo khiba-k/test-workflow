@@ -4,10 +4,11 @@ jobs:
   createImg:
     runs-on: ubuntu-latest
     steps:
-      #check the repo
-      - uses: actions/checkout@v2
-      #Github Container registry Login
-      - run: login --username khiba-k --password ${{secrets.CR_PAT }} ghcr.io
-      - run: docker build . --tag ghcr.io/khiba-k/test_workflow:latest
-      #Push image to registry
-      - run: docker push ghcr.io/khiba-k/test_workflow:latest
+      - name: check repo
+        uses: actions/checkout@v2
+      - name: Login
+        run: login --username khiba-k --password ${{secrets.CR_PAT }} ghcr.io
+      - name: build image
+        run: docker build . --tag ghcr.io/khiba-k/test_workflow:latest
+      - name: Push image
+        run: docker push ghcr.io/khiba-k/test_workflow:latest
